@@ -1,0 +1,120 @@
+@server=http://localhost:4004
+@username=alice
+@password=
+
+
+### Books
+# @name Books_GET
+GET {{server}}/odata/v4/catalog/Books
+Authorization: Basic {{username}}:{{password}}
+
+
+### Books
+# @name Books_POST
+POST {{server}}/odata/v4/catalog/Books
+Content-Type: application/json
+Authorization: Basic {{username}}:{{password}}
+
+{
+  "ID": 24285184,
+  "title": "title-24285184",
+  "stock":60,
+  "price": 64
+}
+
+
+### Books
+# @name Books_POST
+POST {{server}}/odata/v4/catalog/Books
+Content-Type: application/json
+Authorization: Basic {{username}}:{{password}}
+
+{
+  "ID": 24285185,
+  "title": "title-24285185",
+  "stock":100,
+  "price": 64
+}
+
+
+### Books
+# @name Books_PATCH
+PATCH {{server}}/odata/v4/catalog/Books/24285184
+Content-Type: application/json
+Authorization: Basic {{username}}:{{password}}
+
+{
+  "ID": 24285184,
+  "title": "title1-24285184",
+  "price": 60
+}
+
+
+### Books
+# @name Books_DELETE
+DELETE {{server}}/odata/v4/catalog/Books/24285185
+Content-Type: application/json
+Authorization: Basic {{username}}:{{password}}
+
+
+### Orders
+# @name Orders_GET
+GET {{server}}/odata/v4/catalog/Orders
+Authorization: Basic {{username}}:{{password}}
+
+
+### Orders Triggering verification before error
+# @name Orders_POST
+POST {{server}}/odata/v4/catalog/Orders
+Content-Type: application/json
+Authorization: Basic {{username}}:{{password}}
+
+{
+  "ID": 4134052,
+  "book_ID": 24285184,
+  "amount": 67
+}
+
+### Orders Triggering verification before no error
+# @name Orders_POST
+POST {{server}}/odata/v4/catalog/Orders
+Content-Type: application/json
+Authorization: Basic {{username}}:{{password}}
+
+{
+  "ID": 4134053,
+  "book_ID": 24285185,
+  "amount": 67
+}
+
+
+### Orders
+# @name Orders_PATCH
+PATCH {{server}}/odata/v4/catalog/Orders/4134052
+Content-Type: application/json
+Authorization: Basic {{username}}:{{password}}
+
+{
+  "ID": 4134052,
+  "book_ID": 24285184,
+  "amount": 65
+}
+
+
+### Orders
+# @name Orders_DELETE
+DELETE {{server}}/odata/v4/catalog/Orders/4134052
+Content-Type: application/json
+Authorization: Basic {{username}}:{{password}}
+
+
+### submitOrder
+# @name submitOrder_POST
+POST {{server}}/odata/v4/catalog/submitOrder
+Content-Type: application/json
+Authorization: Basic {{username}}:{{password}}
+
+{
+  "bookID": 24285184,
+  "amount": 5
+}
